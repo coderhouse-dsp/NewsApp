@@ -6,17 +6,48 @@ export class News extends Component {
     super()
     console.log('Hello I am a constructor from News component')
     this.state = {
+      articles: [],
       loading: false,
+      page: 1,
     }
   }
   async componentDidMount() {
     // console.log(cdm)
     let url =
-      'https://newsapi.org/v2/everything?q=tesla&from=2022-03-17&sortBy=publishedAt&apiKey=52f2b93ef9764c26a72e94eab22c4790'
+      'https://newsapi.org/v2/everything?domains=wsj.com&apiKey=52f2b93ef9764c26a72e94eab22c4790&pageSize=20'
     let data = await fetch(url)
     let parsedData = await data.json()
     console.log(parsedData)
-    this.setState({ articles: parsedData.articles })
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+    })
+  }
+  handleNextClick = async () => {
+    console.log('Next')
+    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+    } else {
+      let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=52f2b93ef9764c26a72e94eab22c4790&page=${
+        this.state.page + 1
+      }&pageSize=20`
+      let data = await fetch(url)
+      let parsedData = await data.json()
+      console.log(parsedData)
+      this.setState({
+        page: this.state.page + 1,
+        articles: parsedData.articles,
+      })
+    }
+  }
+  handlePrevClick = async () => {
+    console.log('Next')
+    let url = `https://newsapi.org/v2/everything?domains=wsj.com&apiKey=52f2b93ef9764c26a72e94eab22c4790&page=${
+      this.state.page - 1
+    }&pageSize=20`
+    let data = await fetch(url)
+    let parsedData = await data.json()
+    console.log(parsedData)
+    this.setState({ page: this.state.page - 1, articles: parsedData.articles })
   }
   render() {
     console.log('I am render')
@@ -39,6 +70,23 @@ export class News extends Component {
               </div>
             )
           })}
+        </div>
+        <div className='container d-flex justify-content-between'>
+          <button
+            type='button'
+            class='btn btn-dark'
+            onClick={this.handlePrevClick}
+          >
+            {' '}
+            &larr; Previous
+          </button>
+          <button
+            type='button'
+            class='btn btn-dark'
+            onClick={this.handleNextClick}
+          >
+            Next &rarr;
+          </button>
         </div>
       </div>
     )
