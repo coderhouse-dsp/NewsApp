@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 export class News extends Component {
   static defaultProps = {
     country: 'in',
-    pageSize: 8,
+    pageSize: 2,
     category: 'general',
   }
   static propTypes = {
@@ -108,7 +108,7 @@ export class News extends Component {
           <button
             disabled={this.state.page <= 1}
             type='button'
-            class='btn btn-dark'
+            className='btn btn-dark'
             onClick={this.handlePrevClick}
           >
             {' '}
@@ -120,7 +120,7 @@ export class News extends Component {
               Math.ceil(this.state.totalResults / this.props.pageSize)
             }
             type='button'
-            class='btn btn-dark'
+            className='btn btn-dark'
             onClick={this.handleNextClick}
           >
             Next &rarr;
