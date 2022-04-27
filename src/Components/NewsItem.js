@@ -32,9 +32,9 @@ export class NewsItem extends Component {
               </small>
             </p>
             <a
-              rel='noreferrer'
+              // rel='noreferrer'
               href={newsUrl}
-              target='_blank'
+              // target='_blank'
               className='btn btn-dark'
             >
               Read More
