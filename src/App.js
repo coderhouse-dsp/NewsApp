@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 export default class App extends Component {
   pageSize = 15;
+  // apiKey = process.env.REACT_APP_NEWS_API
   state = {
     progress:0
   }
@@ -23,7 +24,7 @@ export default class App extends Component {
       <div>
         <Router>
           <Navbar />
-          {/* <LoadingBar
+          {/* <LoadingBary
         color='#f11946'
         progress={this.state.progress}
       /> */}
@@ -45,6 +46,7 @@ export default class App extends Component {
               path='/business'
               element={
                 <News setProgress={this.setProgress}
+                
                   pageSize={this.pageSize}
                   key='business'
                   country='in'
@@ -57,6 +59,7 @@ export default class App extends Component {
               path='/entertainment'
               element={
                 <News setProgress={this.setProgress}
+                
                   pageSize={this.pageSize}
                   key='entertainment'
                   country='in'
@@ -69,6 +72,7 @@ export default class App extends Component {
               path='/health'
               element={
                 <News setProgress={this.setProgress}
+                
                   key='health'
                   pageSize={this.pageSize}
                   country='in'
@@ -82,6 +86,7 @@ export default class App extends Component {
               path='/science'
               element={
                 <News setProgress={this.setProgress}
+                
                   key='science'
                   pageSize={this.pageSize}
                   country='in'
@@ -94,6 +99,7 @@ export default class App extends Component {
               path='/sports'
               element={
                 <News setProgress={this.setProgress}
+                
                   key='sports'
                   pageSize={this.pageSize}
                   country='in'
@@ -106,6 +112,7 @@ export default class App extends Component {
               path='/technology'
               element={
                 <News setProgress={this.setProgress}
+                
                   pageSize={this.pageSize}
                   key='technology'
                   country='in'
