@@ -1,6 +1,5 @@
 import './App.css'
-
-import React, { Component } from 'react'
+import React,{useState} from 'react'
 import Navbar from './Components/Navbar'
 import News from './Components/News'
 // import NewsItem from './Components/NewsItem'
@@ -9,32 +8,26 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
 
-export default class App extends Component {
-  pageSize = 15;
-  // apiKey = process.env.REACT_APP_NEWS_API
-  state = {
-    progress:0
-  }
-  setProgress=(progress)=>
-  {
-    this.setState({progress:progress})
-  }
-  render() {
+const App =()=> {
+  const pageSize = 15;
+  const[progress,setProgress] = useState(0)
+  
+
     return (
       <div>
         <Router>
           <Navbar />
-          {/* <LoadingBary
+          {/* <LoadingBar
         color='#f11946'
-        progress={this.state.progress}
+        progress={state.progress}
       /> */}
           <Routes>
             <Route
               exact
               path='/'
               element={
-                <News setProgress={this.setProgress}
-                  pageSize={this.pageSize}
+                <News setProgress={setProgress}
+                  pageSize={pageSize}
                   key='general'
                   country='in'
                   category='general'
@@ -45,9 +38,8 @@ export default class App extends Component {
               exact
               path='/business'
               element={
-                <News setProgress={this.setProgress}
-                
-                  pageSize={this.pageSize}
+                <News setProgress={setProgress}
+                  pageSize={pageSize}
                   key='business'
                   country='in'
                   category='business'
@@ -58,9 +50,8 @@ export default class App extends Component {
               exact
               path='/entertainment'
               element={
-                <News setProgress={this.setProgress}
-                
-                  pageSize={this.pageSize}
+                <News setProgress={setProgress}
+                  pageSize={pageSize}
                   key='entertainment'
                   country='in'
                   category='entertainment'
@@ -71,10 +62,9 @@ export default class App extends Component {
               exact
               path='/health'
               element={
-                <News setProgress={this.setProgress}
-                
+                <News setProgress={setProgress}
                   key='health'
-                  pageSize={this.pageSize}
+                  pageSize={pageSize}
                   country='in'
                   category='health'
                 />
@@ -85,10 +75,9 @@ export default class App extends Component {
               exact
               path='/science'
               element={
-                <News setProgress={this.setProgress}
-                
+                <News setProgress={setProgress}
                   key='science'
-                  pageSize={this.pageSize}
+                  pageSize={pageSize}
                   country='in'
                   category='science'
                 />
@@ -98,10 +87,9 @@ export default class App extends Component {
               exact
               path='/sports'
               element={
-                <News setProgress={this.setProgress}
-                
+                <News setProgress={setProgress}
                   key='sports'
-                  pageSize={this.pageSize}
+                  pageSize={pageSize}
                   country='in'
                   category='sports'
                 />
@@ -111,9 +99,8 @@ export default class App extends Component {
               exact
               path='/technology'
               element={
-                <News setProgress={this.setProgress}
-                
-                  pageSize={this.pageSize}
+                <News setProgress={setProgress}
+                  pageSize={pageSize}
                   key='technology'
                   country='in'
                   category='technology'
@@ -125,4 +112,4 @@ export default class App extends Component {
       </div>
     )
   }
-}
+export default App

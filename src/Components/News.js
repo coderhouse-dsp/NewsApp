@@ -9,7 +9,7 @@ const News = (props)=>{
   const [loading,setLoading] = useState(true)
   const [page,setPage] = useState(1)
   const [totalResults,setTotalResults] = useState(0)
-  // document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`
+  
 
   const capitalizeFirstLetter = (string)=>{
     return string.charAt(0).toUpperCase()+string.slice(1);
@@ -34,21 +34,13 @@ const News = (props)=>{
     props.setProgress(100)
   }
   useEffect(()=>{
+    document.title = `${capitalizeFirstLetter(props.category)} - NewsMonkey`
     updateNews();
+    //eslint-disable-next-line
   },[])
- const handleNextClick = async () => {
-    console.log('Next')
-    setPage(page+1)
-    updateNews();
-  }
-  const handlePrevClick = async () => {
-    console.log('Next')
-    setPage(page-1)
-    updateNews();
-  }
   const fetchMoreData = async() => {
+    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=52f2b93ef9764c26a72e94eab22c4790&page=${page+1}&pageSize=${props.pageSize}`
     setPage(page+1)
-    const url = `https://newsapi.org/v2/top-headlines?country=${props.country}&category=${props.category}&apiKey=52f2b93ef9764c26a72e94eab22c4790&page=${page}&pageSize=${props.pageSize}`
     let data = await fetch(url)
     let parsedData = await data.json()
     setArticles(articles.concat(parsedData.articles))
